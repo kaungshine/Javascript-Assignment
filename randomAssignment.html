@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Assignment</title>
+	<script type="text/javascript">
+		function random(){
+			let myNum = Math.floor(Math.random() *20) + 1;
+			let check = false;
+			alert(myNum);
+			let i = 1;
+			do
+			{
+			let youNum = prompt('Please fill Guess Number:');
+			if(youNum == myNum)
+			{
+				check = true;
+				alert('Correct');
+				alert('You guessed '+i+` time${i === 1 ? '' : 's'}`);
+			}
+			else if(youNum > myNum)
+			{
+				alert('Higher');
+			}
+			else
+			{
+				alert('Lower');
+			}
+			i++;
+		}while(!check)
+	}	
+	</script>
+</head>
+<body>
+	<input type="button" onclick="random()" value="Guess Number">
+</body>
+</html>

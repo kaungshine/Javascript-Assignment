@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Floor Assignment</title>
+	<script type="text/javascript">
+		function calculation(){
+
+			roomArea = parseInt(document.form1.width.value) * 
+						parseInt(document.form1.length.value);
+			if (document.getElementById('r1').checked) {
+				area = parseInt(document.form1.floorWidth.value) * 
+						parseInt(document.form1.floorWidth.value);
+			}else if(document.getElementById('r2').checked) {
+				area = parseInt(document.form1.wallWidth.value) * 
+						parseInt(document.form1.wallHeight.value);
+			}
+
+			noOfTitles = roomArea/area;
+			document.form1.noOfTitles.value = noOfTitles;
+			total = noOfTitles + noOfTitles * 0.05;
+			document.form1.total.value = Math.round(total);
+
+		}
+
+		function display(){
+			if(document.getElementById('r1').checked){
+				document.getElementById('floor').style.display = 'block';
+				document.getElementById('wall').style.display = 'none';
+			}
+			if(document.getElementById('r2').checked){
+				document.getElementById('wall').style.display = 'block';
+				document.getElementById('floor').style.display = 'none';
+			}
+		}
+	</script>
+	<style type="text/css">
+		fieldset
+		{
+			border:2px solid black;
+			-moz-border-radius:8px;
+			-webkit-border-radius:8px;
+			border-radius: 8px;
+			margin-right: 32%;
+			margin-left: 32%;
+		}
+		legend
+		{
+			margin-bottom: 0px;
+			margin-left: 16px;
+		}
+	</style>
+</head>
+<body>
+	<form name="form1">
+		<h2 style="text-align: center;">Floor & Wall Calculation</h2>
+		<fieldset>
+			<legend class="legend1">Room</legend><br>
+			<label>Room width: </label>
+			<input type="text" name="width"><br><br>
+			<label>Room length: </label>
+			<input type="text" name="length">
+		</fieldset><br>
+		<fieldset>
+			<legend>Choose Tiles</legend><br>
+			<input type="radio" name="rdo" id="r1" onclick="display()" value="floor" checked="checked">Floor
+			<input type="radio" name="rdo" id="r2" onclick="display()" value="wall">Wall<br><br>
+			<div id="floor" style="display: block;">
+				<label>Enter width & height: </label>
+				<input type="text" name="floorWidth">
+				<input type="button" value="Calculate" onclick="calculation()"><br>
+			</div>
+			<div id="wall" style="display: none;">
+				<label>Enter width: </label>
+				<input type="text" name="wallWidth"><br><br>
+				<label>Enter height: </label>
+				<input type="text" name="wallHeight">
+				<input type="button" value="Calculate" onclick="calculation()">
+			</div>
+		</fieldset><br>
+		<fieldset>
+			<legend>Result</legend><br>
+			<label>Before adding 5%: </label>
+			<input type="text" name="noOfTitles" readonly="readonly"><br><br>
+			<label>After adding 5%: </label>
+			<input type="text" name="total" readonly="readonly">
+		</fieldset>
+	</form>
+</body>
+</html>
