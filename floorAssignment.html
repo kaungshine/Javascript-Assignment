@@ -5,20 +5,23 @@
 	<script type="text/javascript">
 		function calculation(){
 
-			roomArea = parseInt(document.form1.width.value) * 
-						parseInt(document.form1.length.value);
+			
 			if (document.getElementById('r1').checked) {
+				roomArea = parseInt(document.form1.width.value) * 
+						parseInt(document.form1.length.value);
 				area = parseInt(document.form1.floorWidth.value) * 
 						parseInt(document.form1.floorWidth.value);
 			}else if(document.getElementById('r2').checked) {
+				roomArea = (parseInt(document.form1.width.value) * 12) * 
+						(parseInt(document.form1.length.value) * 12);
 				area = parseInt(document.form1.wallWidth.value) * 
 						parseInt(document.form1.wallHeight.value);
 			}
 
 			noOfTitles = roomArea/area;
-			document.form1.noOfTitles.value = noOfTitles;
+			document.form1.noOfTitles.value = Math.ceil(noOfTitles);
 			total = noOfTitles + noOfTitles * 0.05;
-			document.form1.total.value = Math.round(total);
+			document.form1.total.value = Math.ceil(total);
 
 		}
 
@@ -56,24 +59,24 @@
 		<fieldset>
 			<legend class="legend1">Room</legend><br>
 			<label>Room width: </label>
-			<input type="text" name="width"><br><br>
+			<input type="text" name="width" placeholder="Enter room's width in feet"><br><br>
 			<label>Room length: </label>
-			<input type="text" name="length">
+			<input type="text" name="length" placeholder="Enter room's length in feet">
 		</fieldset><br>
 		<fieldset>
 			<legend>Choose Tiles</legend><br>
 			<input type="radio" name="rdo" id="r1" onclick="display()" value="floor" checked="checked">Floor
 			<input type="radio" name="rdo" id="r2" onclick="display()" value="wall">Wall<br><br>
 			<div id="floor" style="display: block;">
-				<label>Enter width & height: </label>
-				<input type="text" name="floorWidth">
+				<label>Enter width & length: </label>
+				<input type="text" name="floorWidth" placeholder="Enter floor's w & l in feet">
 				<input type="button" value="Calculate" onclick="calculation()"><br>
 			</div>
 			<div id="wall" style="display: none;">
 				<label>Enter width: </label>
-				<input type="text" name="wallWidth"><br><br>
+				<input type="text" name="wallWidth" placeholder="Enter wall's width in inches"><br><br>
 				<label>Enter height: </label>
-				<input type="text" name="wallHeight">
+				<input type="text" name="wallHeight" placeholder="Enter wall's height in inches">
 				<input type="button" value="Calculate" onclick="calculation()">
 			</div>
 		</fieldset><br>
